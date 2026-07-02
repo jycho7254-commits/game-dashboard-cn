@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
+﻿<!DOCTYPE html><html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>韩国手游综合分析仪表板</title>
+<title>한국 모바일 게임 대시보드</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 :root{--bg0:#0a0a0f;--bg1:#12131a;--bg2:#1a1b26;--border:#2a2b3a;--t1:#e1e2ea;--t2:#6b7a9e;--blue:#3b82f6;--red:#ef4444;--green:#22c55e;--yellow:#f59e0b;--purple:#a855f7;--cyan:#06b6d4;--orange:#f97316;--link:#7ab8ff}
@@ -53,56 +53,56 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 </head><body>
 <nav class="sb">
 <h2>🎮 GameInsight</h2>
-<a class="on" onclick="showTab('rank',this)"><span>🏆</span> 收入排名</a>
-<a onclick="showTab('inf',this)"><span>🎮</span> 网红</a>
-<a onclick="showTab('sent',this)"><span>💬</span> 舆论分析</a>
-<a onclick="showTab('rev',this)"><span>📈</span> 收入趋势</a>
-<a onclick="showTab('cri',this)"><span>📋</span> 基准指南</a>
-<a onclick="showTab('ads',this)"><span>🎬</span> YouTube视频</a>
-<a onclick="showTab('upd',this)"><span>🔄</span> 更新</a>
-<a onclick="showTab('mkt',this)"><span>📢</span> 营销</a>
-<a onclick="showTab('cal',this)"><span>📅</span> 日程</a>
-<a onclick="showTab('nws',this)"><span>📰</span> 新闻</a>
+<a class="on" onclick="showTab('rank',this)"><span>🏆</span> 매출 순위</a>
+<a onclick="showTab('inf',this)"><span>🎮</span> 인플루언서</a>
+<a onclick="showTab('sent',this)"><span>💬</span> 여론 분석</a>
+<a onclick="showTab('rev',this)"><span>📈</span> 매출 추이</a>
+<a onclick="showTab('cri',this)"><span>📋</span> 기준 가이드</a>
+<a onclick="showTab('ads',this)"><span>🎬</span> 유튜브 영상</a>
+<a onclick="showTab('upd',this)"><span>🔄</span> 업데이트</a>
+<a onclick="showTab('mkt',this)"><span>📢</span> 마케팅</a>
+<a onclick="showTab('cal',this)"><span>📅</span> 캘린더</a>
+<a onclick="showTab('nws',this)"><span>📰</span> 뉴스</a>
 </nav>
 <div class="mn">
-<div class="tb"><h1>韩国手游综合分析仪表板</h1><div class="mt">2026-07-02 03:24</div></div>
+<div class="tb"><h1>한국 모바일 게임 대시보드</h1><div class="mt">2026-07-02 03:24</div></div>
 
 <div id="tab-rank" class="tc on">
 <div class="kps">
-<div class="kp"><div class="l">收入游戏</div><div class="v">50款</div><div class="s">Google Play Top50</div></div>
-<div class="kp"><div class="l">开发商</div><div class="v">34家</div></div>
-<div class="kp"><div class="l">平均评分</div><div class="v">4.3</div></div>
-<div class="kp"><div class="l">网红</div><div class="v">105位</div></div>
-<div class="kp"><div class="l">数据周期</div><div class="v">7天</div><div class="s">2026-06-26~</div></div>
+<div class="kp"><div class="l">매출 게임</div><div class="v">50개</div><div class="s">Google Play Top50</div></div>
+<div class="kp"><div class="l">개발사</div><div class="v">34개</div></div>
+<div class="kp"><div class="l">평균 평점</div><div class="v">4.3</div></div>
+<div class="kp"><div class="l">인플루언서</div><div class="v">105명</div></div>
+<div class="kp"><div class="l">데이터 기간</div><div class="v">7일</div><div class="s">2026-06-26~</div></div>
 </div>
-<div class="st">🏆 Google Play 收入 Top 50</div>
+<div class="st">🏆 Google Play 매출 Top 50</div>
 <div class="ft" id="gf"></div>
-<input class="si" placeholder="搜索游戏名/开发商..." oninput="renderRank(this.value)" id="rs">
-<table id="rt"><thead><tr><th>#</th><th>变动</th><th>游戏</th><th>开发商</th><th>发行商</th><th>类型</th><th>⭐ 评分</th></tr></thead><tbody></tbody></table>
+<input class="si" placeholder="게임명/개발사 검색..." oninput="renderRank(this.value)" id="rs">
+<table id="rt"><thead><tr><th>#</th><th>변동</th><th>게임</th><th>개발사</th><th>퍼블리셔</th><th>장르</th><th>⭐ 평점</th></tr></thead><tbody></tbody></table>
 </div>
 
 <div id="tab-inf" class="tc">
-<div class="st">🎮 网红 105位</div>
+<div class="st">🎮 인플루언서 105명</div>
 <div class="ft" id="icf"></div>
-<input class="si" placeholder="搜索网红..." oninput="renderInf(this.value)">
-<table id="it"><thead><tr><th>#</th><th>频道名</th><th>平台</th><th>分类</th><th>订阅数</th><th>观众</th><th>视频</th><th>总播放</th></tr></thead><tbody></tbody></table>
+<input class="si" placeholder="인플루언서 검색..." oninput="renderInf(this.value)">
+<table id="it"><thead><tr><th>#</th><th>채널명</th><th>플랫폼</th><th>카테고리</th><th>구독자</th><th>시청자</th><th>영상</th><th>총 조회</th></tr></thead><tbody></tbody></table>
 </div>
 
 <div id="tab-sent" class="tc">
-<div class="wb i">📊 <b>实时社区爬取数据</b> — 收集自DC Inside Gallery</div>
-<div class="st">💬 各游戏社区舆论</div>
+<div class="wb i">📊 <b>실시간 커뮤니티 크롤링 데이터</b> — DC인사이드 갤러리에서 수집</div>
+<div class="st">💬 게임별 커뮤니티 여론</div>
 <div id="sc"></div>
 </div>
 
 <div id="tab-rev" class="tc">
-<div class="st">📈 收入排名趋势 <span style="font-size:12px;color:var(--t2)">— 最近7天</span></div>
-<div class="wb w" id="rw" style="display:none">⚠️ 仅显示数据采集开始后的实际排名（当前已采集7天）</div>
+<div class="st">📈 매출 랭킹 추이 <span style="font-size:12px;color:var(--t2)">— 최근 7일</span></div>
+<div class="wb w" id="rw" style="display:none">⚠️ 데이터 수집 시작일 이후 실제 랭킹만 표시 (현재 7일 수집됨)</div>
 <div class="ct">
-<label>显示：</label>
+<label>표시:</label>
 <select id="rm" onchange="updChart()">
 <option value="t10">Top 10</option>
-<option value="all">全部50款</option>
-<option value="sel">选择游戏</option>
+<option value="all">전체 50개</option>
+<option value="sel">게임 선택</option>
 </select>
 <div id="gs" style="display:none"></div>
 </div>
@@ -110,37 +110,37 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 </div>
 
 <div id="tab-cri" class="tc">
-<div class="st">📋 基准指南</div>
+<div class="st">📋 기준 가이드</div>
 <div id="cr"></div>
 </div>
 
 <div id="tab-ads" class="tc">
-<div class="wb i">📺 YouTube上关于"游戏名"的视频 — 最近7天 + 最新视频</div>
-<div class="st">🎬 YouTube视频</div>
+<div class="wb i">📺 YouTube에서 "게임명" 관련 영상 — 최근 7일 + 최신 영상</div>
+<div class="st">🎬 유튜브 영상</div>
 <div id="as"></div>
 </div>
 
 <div id="tab-upd" class="tc">
-<div class="wb i">📱 最新更新追踪器 — Google Play changelog</div>
-<div class="st">🔄 最近更新</div>
+<div class="wb i">📱 최신 업데이트 트래커 — Google Play changelog</div>
+<div class="st">🔄 최근 업데이트</div>
 <div id="us"></div>
 </div>
 
 <div id="tab-mkt" class="tc">
-<div class="wb i">📢 营销活动追踪器 — YouTube视频 · 网红合作 · UA活动</div>
-<div class="st">📢 营销活动</div>
+<div class="wb i">📢 마케팅 액션 트래커 — 유튜브 영상 · 인플루언서 협업 · UA 활동</div>
+<div class="st">📢 마케팅 활동</div>
 <div id="ms"></div>
 </div>
 
 <div id="tab-cal" class="tc">
-<div class="wb i">📅 游戏行业日程 — 新作发布 · CBT · OBT · 主要更新</div>
-<div class="st">📅 行业日程</div>
+<div class="wb i">📅 게임업계 캘린더 — 신작 런칭 · CBT · OBT · 주요 업데이트</div>
+<div class="st">📅 업계 캘린더</div>
 <div id="cs"></div>
 </div>
 
 <div id="tab-nws" class="tc">
-<div class="wb i">📰 最新游戏新闻 — Inven · GameMeca · 中国游戏网媒（最近7天）</div>
-<div class="st">📰 游戏新闻</div>
+<div class="wb i">📰 최근 게임 뉴스 — 인벤 · 게임메카 · 중국 게임웹진 (최근 7일)</div>
+<div class="st">📰 게임 뉴스</div>
 <div id="ns"></div>
 </div>
 </div>
@@ -151,8 +151,8 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 <h2 id="mt"></h2>
 <div class="ig" id="mi"></div>
 <div class="cbox"><canvas id="mc"></canvas></div>
-<h3>🎬 YouTube视频</h3><div id="ma"></div>
-<h3>💬 社区反响</h3><div id="ms"></div>
+<h3>🎬 유튜브 영상</h3><div id="ma"></div>
+<h3>💬 커뮤니티 반응</h3><div id="ms"></div>
 </div>
 </div>
 
@@ -178,412 +178,3 @@ function showTab(id,el){
 var ag='all';
 (function(){
   var gs=new Set(G.map(function(g){return g.category}));
-  var c=document.getElementById('gf');
-  ['all'].concat(Array.from(gs)).forEach(function(cat){
-    var ch=document.createElement('span');
-    ch.className='ch'+(cat==='all'?' on':'');
-    ch.textContent=cat==='all'?'全部':cat;
-    ch.onclick=function(){
-      ag=cat;
-      c.querySelectorAll('.ch').forEach(function(x){x.classList.remove('on')});
-      ch.classList.add('on');
-      renderRank();
-    };
-    c.appendChild(ch);
-  });
-  renderRank();
-  renderInf();
-})();
-
-function rClass(r){
-  if(r>=4.5)return'rh';if(r>=4.0)return'rm';if(r>=3.5)return'ro';return'rb';
-}
-
-function renderRank(q){
-  q=(q||'').toLowerCase();
-  var tb=document.querySelector('#rt tbody');
-  tb.innerHTML='';
-  G.forEach(function(g,i){
-    if(ag!=='all'&&g.category!==ag)return;
-    if(q&&g.name.toLowerCase().indexOf(q)<0&&g.developer.toLowerCase().indexOf(q)<0)return;
-    var c=g.rank_change||'→';
-    var cc=c.indexOf('↑')===0?'ru':c.indexOf('↓')===0?'rd':'';
-    var tr=document.createElement('tr');
-    tr.innerHTML='<td>'+(i+1)+'</td><td class="'+cc+'">'+c+'</td><td><span class="gl" onclick="openModal('+i+')">'+g.name+'</span></td><td class="dp">'+g.developer+'</td><td class="dp">'+g.publisher+'</td><td>'+g.category+'</td><td class="'+rClass(g.rating)+'">'+g.rating.toFixed(2)+'</td>';
-    tb.appendChild(tr);
-  });
-}
-
-// ── Influencer ──
-var aic='all';
-(function(){
-  var cats=new Set(I.map(function(i){return i.category||'기타'}));
-  var c=document.getElementById('icf');
-  ['all'].concat(Array.from(cats)).forEach(function(cat){
-    var ch=document.createElement('span');
-    ch.className='ch'+(cat==='all'?' on':'');
-    ch.textContent=cat==='all'?'全部':cat;
-    ch.onclick=function(){
-      aic=cat;
-      c.querySelectorAll('.ch').forEach(function(x){x.classList.remove('on')});
-      ch.classList.add('on');
-      renderInf();
-    };
-    c.appendChild(ch);
-  });
-})();
-
-function renderInf(q){
-  q=(q||'').toLowerCase();
-  var tb=document.querySelector('#it tbody');
-  tb.innerHTML='';
-  var s=I.slice().sort(function(a,b){return(b.followers||0)-(a.followers||0)});
-  if(aic!=='all')s=s.filter(function(i){return(i.category||'기타')===aic});
-  if(q)s=s.filter(function(i){return(i.channel_name||'').toLowerCase().indexOf(q)>=0});
-  s.forEach(function(inf,i){
-    var tv=(inf.recent_videos||[]).reduce(function(s,v){return s+(v.views||0)},0);
-    var tr=document.createElement('tr');
-    var chUrl = inf.channel_url || (inf.platform==='YouTube' ? 'https://www.youtube.com/@'+encodeURIComponent(inf.channel_name.replace(/\s/g,'')) : '');
-    tr.innerHTML='<td>'+(i+1)+'</td><td>'+(chUrl?'<a href="'+chUrl+'" target="_blank" class="gl">'+inf.channel_name+'</a>':inf.channel_name)+'</td><td>'+(inf.platform||'—')+'</td><td>'+(inf.category||'기타')+'</td><td>'+(inf.followers||0).toLocaleString()+'</td><td>'+(inf.live_viewers||0).toLocaleString()+'</td><td>'+(inf.recent_videos||[]).length+'</td><td>'+tv.toLocaleString()+'</td>';
-    tb.appendChild(tr);
-  });
-}
-
-// ── Sentiment ──
-function renderSent(){
-  var el=document.getElementById('sc');
-  var keys=Object.keys(S);
-  if(!keys.length){
-    el.innerHTML='<p style="color:var(--t2)">暂无采集的舆论数据。</p>';
-    return;
-  }
-  var h='';
-  keys.forEach(function(gm){
-    var d=S[gm];
-    h+='<div style="margin-bottom:24px"><h3 style="margin-bottom:8px">'+gm+'</h3>';
-    if(d.gallery_url){
-      h+='<div style="margin-bottom:8px"><a href="'+d.gallery_url+'" target="_blank" style="font-size:11px;color:var(--cyan);text-decoration:none">🔗 DC 갤러리 보기 ('+d.gallery_id+')</a></div>';
-    }
-    h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:12px">';
-    h+='<div class="kp"><div class="l">帖子</div><div class="v">'+(d.total_posts||0)+'</div></div>';
-    h+='<div class="kp"><div class="l">好评</div><div class="v" style="color:var(--green)">'+(d.positive_pct||0)+'%</div></div>';
-    h+='<div class="kp"><div class="l">差评</div><div class="v" style="color:var(--red)">'+(d.negative_pct||0)+'%</div></div>';
-    h+='<div class="kp"><div class="l">중립</div><div class="v" style="color:var(--t2)">'+(d.neutral_pct||0)+'%</div></div></div>';
-    h+='<div class="sb2"><div class="p" style="width:'+(d.positive_pct||0)+'%"></div><div class="n" style="width:'+(d.negative_pct||0)+'%"></div><div class="u" style="width:'+(d.neutral_pct||100)+'%"></div></div>';
-    if(d.top_posts&&d.top_posts.length){
-      h+='<div style="margin-top:12px">';
-      d.top_posts.slice(0,5).forEach(function(p){
-        h+='<div style="padding:8px;background:var(--bg2);border-radius:6px;margin-bottom:6px;font-size:12px"><span style="color:var(--t2)">['+(p.recommend||0)+'추]</span> '+p.title+'</div>';
-      });
-      h+='</div>';
-    }
-    h+='</div>';
-  });
-  el.innerHTML=h;
-}
-
-// ── Revenue Chart ──
-var rvc=null;
-function initChart(){
-  var m=document.getElementById('rm').value;
-  var sd=document.getElementById('gs');
-  if(m==='sel'){
-    sd.style.display='flex';sd.innerHTML='';sd.style.flexWrap='wrap';
-    G.slice(0,30).forEach(function(g,i){
-      var l=document.createElement('label');
-      l.style.cssText='font-size:11px;color:var(--t2);margin-right:8px;cursor:pointer';
-      l.innerHTML='<input type="checkbox" value="'+i+'" '+(i<10?'checked':'')+'> '+g.name;
-      sd.appendChild(l);
-    });
-  }else{
-    sd.style.display='none';
-  }
-  updChart();
-}
-
-function updChart(){
-  if(!AD.length){
-    document.getElementById('rw').style.display='flex';
-    return;
-  }
-  document.getElementById('rw').style.display='none';
-  var m=document.getElementById('rm').value;
-  var ds=[];
-  if(m==='t10'){
-    G.slice(0,10).forEach(function(g,idx){
-      var d=(T[g.name]||[]).map(function(h){return h.rank});
-      if(d.length)ds.push({label:g.name,data:d,borderColor:'hsl('+idx*36+',70%,60%)',tension:.3,pointRadius:2,fill:false});
-    });
-  }else if(m==='all'){
-    G.forEach(function(g,idx){
-      var d=(T[g.name]||[]).map(function(h){return h.rank});
-      if(d.length)ds.push({label:g.name,data:d,borderColor:'hsl('+idx*7+',70%,60%)',tension:.3,pointRadius:1,fill:false});
-    });
-  }else{
-    document.querySelectorAll('#gs input:checked').forEach(function(cb){
-      var g=G[cb.value];
-      var d=(T[g.name]||[]).map(function(h){return h.rank});
-      if(d.length)ds.push({label:g.name,data:d,borderColor:'hsl('+Math.random()*360+',70%,60%)',tension:.3,pointRadius:2,fill:false});
-    });
-  }
-  if(rvc)rvc.destroy();
-  rvc=new Chart(document.getElementById('rc'),{
-    type:'line',
-    data:{labels:AD,datasets:ds},
-    options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{reverse:true,title:{display:true,text:'랭킹'},grid:{color:'rgba(255,255,255,.05)'}},x:{grid:{color:'rgba(255,255,255,.05)'}}},
-      plugins:{legend:{position:'bottom',labels:{color:'#6b7a9e',boxWidth:12,font:{size:10}}}}}
-  });
-}
-
-// ── Calendar ──
-function renderCal(){
-  if(!CL||!CL.events||!CL.events.length){document.getElementById('cs').innerHTML='<p style="color:var(--t2);text-align:center;padding:20px">데이터 없음</p>';return}
-  var evts=CL.events.slice().sort(function(a,b){return(a.date==='TBD'?'z':a.date).localeCompare(b.date==='TBD'?'z':b.date)});
-  // type별 색상
-  var tc={launch:'#11998e',cbt:'#4facfe',obt:'#f093fb',update:'#ff9a44',collab:'#c471ed'};
-  var tl={launch:'🚀 런칭',cbt:'🧪 CBT',obt:'🎮 OBT',update:'🔄 업데이트',collab:'🤝 콜라보'};
-  var h='<div class="kps">';
-  var byType={};
-  evts.forEach(function(e){byType[e.type]=(byType[e.type]||0)+1});
-  h+='<div class="kp"><div class="l">전체 이벤트</div><div class="v">'+evts.length+'개</div></div>';
-  Object.keys(byType).forEach(function(t){h+='<div class="kp"><div class="l">'+(tl[t]||t)+'</div><div class="v">'+byType[t]+'개</div></div>'});
-  h+='</div>';
-  h+='<table class="dt"><tr><th>날짜</th><th>유형</th><th>游戏</th><th>내용</th><th>출처</th></tr>';
-  evts.forEach(function(e){
-    var c=tc[e.type]||'var(--t2)';
-    var lbl=tl[e.type]||e.type;
-    var isTop50=G.some(function(g){return g.name===e.game});
-    var gc=isTop50?'gl':'';
-    h+='<tr><td>'+(e.date==='TBD'?'<span style="color:#999">TBD</span>':e.date)+'</td>';
-    h+='<td><span style="color:'+c+';font-weight:700">'+lbl+'</span></td>';
-    h+='<td class="'+gc+'">'+(e.game||'—')+'</td>';
-    h+='<td>'+(e.url?'<a href="'+e.url+'" target="_blank" style="color:var(--link)">'+e.title+'</a>':e.title)+'</td>';
-    h+='<td style="font-size:11px;color:var(--t2)">'+e.source+'</td></tr>';
-  });
-  h+='</table>';
-  document.getElementById('cs').innerHTML=h;
-}
-
-// ── News ──
-function renderNws(){
-  if(!NW||!NW.news||!NW.news.length){document.getElementById('ns').innerHTML='<p style="color:var(--t2);text-align:center;padding:20px">데이터 없음</p>';return}
-  var items=NW.news.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
-  var sc={inven:'인벤',gamemeca:'게임메카',taptap:'TapTap','3dm':'游民星空',taptapp:'TapTap'};
-  var h='<div class="kps">';
-  var bySrc={};
-  items.forEach(function(n){bySrc[n.source]=(bySrc[n.source]||0)+1});
-  h+='<div class="kp"><div class="l">전체 뉴스</div><div class="v">'+items.length+'건</div></div>';
-  h+='<div class="kp"><div class="l">한국어</div><div class="v">'+items.filter(function(n){return n.lang==='ko'}).length+'건</div></div>';
-  h+='<div class="kp"><div class="l">중국어</div><div class="v">'+items.filter(function(n){return n.lang==='zh'}).length+'건</div></div>';
-  h+='</div>';
-  h+='<table class="dt"><tr><th>날짜</th><th>출처</th><th>제목</th><th>관련게임</th></tr>';
-  items.forEach(function(n){
-    var src=sc[n.source]||n.source;
-    var langIcon=n.lang==='zh'?'🇨🇳':'🇰🇷';
-    h+='<tr><td>'+n.date+'</td><td style="font-size:11px;color:var(--t2)">'+langIcon+' '+src+'</td>';
-    h+='<td><a href="'+n.url+'" target="_blank" style="color:var(--link)">'+n.title+'</a></td>';
-    h+='<td style="font-size:11px">'+(n.game||'—')+'</td></tr>';
-  });
-  h+='</table>';
-  document.getElementById('ns').innerHTML=h;
-}
-
-// ── Criteria ──
-function renderCri(){
-  document.getElementById('cr').innerHTML=
-  '<table><thead><tr><th>등급</th><th>평점</th><th>여론</th><th>의미</th></tr></thead><tbody>'+
-  '<tr><td style="color:var(--green)">S</td><td>4.5+</td><td>好评 60%+</td><td>최상위</td></tr>'+
-  '<tr><td style="color:var(--blue)">A</td><td>4.0~4.4</td><td>好评 40%+</td><td>안정적</td></tr>'+
-  '<tr><td style="color:var(--yellow)">B</td><td>3.5~3.9</td><td>중립</td><td>중간</td></tr>'+
-  '<tr><td style="color:var(--orange)">C</td><td>3.0~3.4</td><td>差评 30%+</td><td>하락</td></tr>'+
-  '<tr><td style="color:var(--red)">D</td><td>3.0-</td><td>差评 50%+</td><td>위험</td></tr>'+
-  '</tbody></table>'+
-  '<div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:12px;color:var(--t2)">'+
-  '<b>数据来源：</b><br>'+
-  '• 排名：Google Play（google-play-scraper）— 每日凌晨2点采集<br>'+
-  '• 여론: DC인사이드 갤러리 크롤링 (curl_cffi)<br>'+
-  '• 유튜브 영상: YouTube (yt-dlp)<br>'+
-  '• 상세정보: Google Play Store (google-play-scraper app detail)</div>';
-}
-
-// ── Marketing Tracker ──
-function renderMkt(){
-  var el=document.getElementById('ms');
-  if(!MK||!Object.keys(MK).length){el.innerHTML='<p style="color:var(--t2);text-align:center;padding:20px">데이터 없음</p>';return}
-  // 매출순위 기준으로 정렬
-  var items=[];
-  G.forEach(function(g){
-    var m=MK[g.name]||{};
-    var score=m.marketing_score||0;
-    var ytVids=m.total_yt_videos||g.sponsor_count||0;
-    var ytViews=m.total_yt_views||g.sponsor_total_views||0;
-    var adCount=m.youtube_ad_mentions||0;
-    var adVids=m.recent_ad_videos||[];
-    items.push({name:g.name,rank:g.rank,score:score,ytVids:ytVids,ytViews:ytViews,adCount:adCount,adVids:adVids,trailer:m.official_trailer||''});
-  });
-  items.sort(function(a,b){return b.score-a.score});
-  // KPI 카드
-  var topScore=items[0]?items[0].score:0;
-  var activeMkt=items.filter(function(x){return x.score>=50}).length;
-  var totalAds=items.reduce(function(s,x){return s+x.adCount},0);
-  var h='<div class="kps">'+
-    '<div class="kp"><div class="l">🔥 최고 营销分数</div><div class="v">'+topScore+'</div><div class="s">'+(items[0]?items[0].name:'—')+'</div></div>'+
-    '<div class="kp"><div class="l">📢 활발한 마케팅</div><div class="v">'+activeMkt+'개</div><div class="s">score≥50</div></div>'+
-    '<div class="kp"><div class="l">🎬 유튜브 广告视频</div><div class="v">'+totalAds+'</div><div class="s">총 파악</div></div>'+
-    '<div class="kp"><div class="l">📺 평균 유튜브 영상</div><div class="v">'+Math.round(items.reduce(function(s,x){return s+x.ytVids},0)/items.length)+'</div><div class="s">게임당</div></div></div>';
-  // 점수 범례
-  h+='<div style="display:flex;gap:12px;margin:12px 0;font-size:11px;color:var(--t2)">';
-  h+='<span>🔥 점수 범례:</span>';
-  h+='<span style="color:#11998e">≥80: 매우 활발</span>';
-  h+='<span style="color:#4facfe">50~79: 활발</span>';
-  h+='<span style="color:#ffa726">20~49: 보통</span>';
-  h+='<span style="color:#666"><20: 낮음</span>';
-  h+='</div>';
-  // 테이블
-  h+='<table class="dt"><tr><th>#</th><th>游戏</th><th>营销分数</th><th>유튜브 영상</th><th>总播放量</th><th>广告视频</th><th>最近营销动作</th></tr>';
-  items.forEach(function(item){
-    var s=item.score;
-    var sc=s>=80?'style="color:#11998e;font-weight:700"':s>=50?'style="color:#4facfe;font-weight:700"':s>=20?'style="color:#ffa726"':'style="color:#666"';
-    var bar='<div style="width:60px;height:6px;background:rgba(255,255,255,.1);border-radius:3px;display:inline-block;vertical-align:middle;margin-left:6px"><div style="width:'+Math.min(s,100)+'%;height:100%;border-radius:3px;background:'+(s>=80?'#11998e':s>=50?'#4facfe':s>=20?'#ffa726':'#555')+'"></div></div>';
-    var rc=item.rank<=10?'gl':'';
-    // 最近营销动作 요약
-    var actions=[];
-    if(item.ytVids>0)actions.push('📺 유튜브 '+item.ytVids+'편');
-    if(item.adVids.length)actions.push('📢 광고 '+item.adVids.length+'편');
-    if(item.trailer)actions.push('🎬 공식 트레일러');
-    if(!actions.length)actions.push('<span style="color:#666">—</span>');
-    var recentAds=item.adVids.slice(0,3).map(function(v){
-      return '<div style="font-size:10px;color:var(--t2);margin:2px 0">• <a href="'+v.url+'" target="_blank" style="color:var(--lnk)">'+v.title.substring(0,40)+'</a> <span style="color:#888">'+(v.channel||'')+'</span></div>';
-    }).join('');
-    h+='<tr><td>'+item.rank+'</td><td class="'+rc+'">'+item.name+'</td><td '+sc+'>'+s+'점 '+bar+'</td><td>'+item.ytVids+'</td><td>'+(item.ytViews/10000).toFixed(1)+'만</td><td>'+(item.adCount||'—')+'</td><td style="max-width:250px">'+actions.join(', ')+recentAds+'</td></tr>';
-  });
-  h+='</table>';
-  el.innerHTML=h;
-}
-
-// ── Update Tracker ──
-function renderUpd(){
-  if(!UD||!Object.keys(UD).length){document.getElementById('us').innerHTML='<p style="color:var(--t2);text-align:center;padding:20px">데이터 없음</p>';return}
-  var items=[];
-  for(var name in UD){
-    var u=UD[name];
-    if(!u||!u.changelog)continue;
-    var d=u.updated?new Date(u.updated):null;
-    var ds=d?d.toLocaleDateString('ko-KR'):'';
-    var dg=d?Math.floor((Date.now()-d.getTime())/86400000):999;
-    items.push({name:name,version:u.version||'—',date:ds,daysAgo:dg,changelog:u.changelog});
-  }
-  items.sort(function(a,b){return a.daysAgo-b.daysAgo});
-  var h='<div class="kps">'+
-    '<div class="kp"><div class="l">전체 게임</div><div class="v">'+Object.keys(UD).length+'개</div></div>'+
-    '<div class="kp"><div class="l">최근 7일 업데이트</div><div class="v">'+items.filter(function(x){return x.daysAgo<=7}).length+'개</div></div>'+
-    '<div class="kp"><div class="l">최근 30일 업데이트</div><div class="v">'+items.filter(function(x){return x.daysAgo<=30}).length+'개</div></div></div>';
-  h+='<table class="dt"><tr><th>#</th><th>游戏</th><th>버전</th><th>업데이트</th><th>경과</th><th>changelog</th></tr>';
-  items.forEach(function(item,i){
-    var age=item.daysAgo;
-    var ageClass=age<=3?'style="color:#11998e;font-weight:700"':age<=7?'style="color:#4facfe"':age<=30?'style="color:var(--t2)"':'style="color:#666"';
-    var ageText=age<=0?'오늘':age+'일 전';
-    var cl=item.changelog.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]*>/g,'').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').trim();
-    var short=cl.length>120?cl.substring(0,120)+'...':cl;
-    var rank=G.findIndex(function(g){return g.name===item.name})+1;
-    var rc=rank<=10?'gl':'';
-    h+='<tr><td>'+rank+'</td><td class="'+rc+'">'+item.name+'</td><td>v'+item.version+'</td><td>'+item.date+'</td><td '+ageClass+'>'+ageText+'</td><td style="max-width:300px;font-size:11px;line-height:1.4;color:var(--t2)" title="'+cl.replace(/"/g,'&quot;').replace(/\n/g,' ')+'">'+short+'</td></tr>';
-  });
-  h+='</table>';
-  document.getElementById('us').innerHTML=h;
-}
-
-// ── YouTube Videos ──
-function renderAds(){
-  var tg=G.filter(function(g){return g.sponsor_count>0});
-  var tv=tg.reduce(function(s,g){return s+g.sponsor_count},0);
-  var tw=tg.reduce(function(s,g){return s+g.sponsor_total_views},0);
-  var h='<div class="kps">'+
-  '<div class="kp"><div class="l">대상 게임</div><div class="v">'+tg.length+'개</div></div>'+
-  '<div class="kp"><div class="l">총 영상</div><div class="v">'+tv+'개</div></div>'+
-  '<div class="kp"><div class="l">총 조회</div><div class="v">'+tw.toLocaleString()+'</div></div></div>';
-  tg.forEach(function(g){
-    h+='<div style="margin-bottom:20px"><h3 style="margin-bottom:8px">'+g.name+' <span style="color:var(--t2);font-size:12px">('+g.sponsor_count+'视频, 播放 '+g.sponsor_total_views.toLocaleString()+')</span></h3>';
-    (g.sponsor_videos||[]).forEach(function(v){
-      var ud=v.uploaded?'<br><span style="color:var(--t2);font-size:11px">'+v.uploaded+'</span>':'';
-      h+='<div class="vi"><span class="vt"><a href="'+v.url+'" target="_blank">'+v.title+'</a><br><span style="color:var(--t2);font-size:11px">'+v.channel+'</span>'+ud+'</span><span class="vs">조회 '+(v.views||0).toLocaleString()+'<br>좋아요 '+(v.likes||0).toLocaleString()+'</span></div>';
-    });
-    h+='</div>';
-  });
-  document.getElementById('as').innerHTML=h;
-}
-
-// ── Modal ──
-var mvc=null;
-function openModal(idx){
-  var g=G[idx];
-  document.getElementById('mt').textContent=g.name+' 상세정보';
-  var wi=g.website?'<a href="'+g.website+'" target="_blank" style="color:var(--blue)">'+g.website+'</a>':'—';
-  document.getElementById('mi').innerHTML=
-  '<div class="ii"><div class="l">开发商</div><div class="vl">'+g.developer+'</div></div>'+
-  '<div class="ii"><div class="l">퍼블리셔</div><div class="vl">'+g.publisher+'</div></div>'+
-  '<div class="ii"><div class="l">런칭일</div><div class="vl">'+g.released+'</div></div>'+
-  '<div class="ii"><div class="l">최근 업데이트</div><div class="vl">'+g.updated+'</div></div>'+
-  '<div class="ii"><div class="l">버전</div><div class="vl">'+g.version+'</div></div>'+
-  '<div class="ii"><div class="l">등급</div><div class="vl">'+g.content_rating+'</div></div>'+
-  '<div class="ii"><div class="l">설치수</div><div class="vl">'+g.installs+'</div></div>'+
-  '<div class="ii"><div class="l">가격</div><div class="vl">'+(g.free?'무료':'유료')+'</div></div>'+
-  '<div class="ii" style="grid-column:span 2"><div class="l">플랫폼</div><div class="vl">Android (Google Play)</div></div>'+
-  '<div class="ii" style="grid-column:span 2"><div class="l">웹사이트</div><div class="vl">'+wi+'</div></div>'+
-  '<div class="ii" style="grid-column:span 2"><div class="l">요약</div><div class="vl" style="font-size:12px">'+(g.summary||'—')+'</div></div>';
-
-  // chart
-  var cv=document.getElementById('mc');
-  cv.style.display='block';
-  if(T[g.name]&&T[g.name].length){
-    var tl=T[g.name];
-    var ranks=tl.map(function(h){return h.rank});
-    var best=Math.min.apply(null,ranks);
-    var worst=Math.max.apply(null,ranks);
-    var avg=Math.round(ranks.reduce(function(a,b){return a+b},0)/ranks.length);
-    if(mvc)mvc.destroy();
-    mvc=new Chart(cv,{type:'line',
-      data:{labels:tl.map(function(h){return h.date}),datasets:[{label:g.name,data:ranks,borderColor:'var(--blue)',tension:.3,pointRadius:3,fill:false}]},
-      options:{responsive:true,maintainAspectRatio:false,
-        plugins:{title:{display:true,text:'Best:'+best+' / Worst:'+worst+' / Avg:'+avg,color:'#6b7a9e'},legend:{display:false}},
-        scales:{y:{reverse:true,title:{display:true,text:'랭킹'},grid:{color:'rgba(255,255,255,.05)'}},x:{grid:{color:'rgba(255,255,255,.05)'}}}}});
-  }else{
-    cv.style.display='none';
-  }
-
-  // ads
-  var mh='';
-  if(g.sponsor_videos&&g.sponsor_videos.length){
-    g.sponsor_videos.forEach(function(v){
-      var ud=v.uploaded?'<br><span style="color:var(--t2);font-size:11px">'+v.uploaded+'</span>':'';
-      mh+='<div class="vi"><span class="vt"><a href="'+v.url+'" target="_blank">'+v.title+'</a><br><span style="color:var(--t2);font-size:11px">'+v.channel+'</span>'+ud+'</span><span class="vs">조회 '+(v.views||0).toLocaleString()+'<br>좋아요 '+(v.likes||0).toLocaleString()+'</span></div>';
-    });
-  }else{
-    mh='<p style="color:var(--t2);font-size:12px">暂无采集视频</p>';
-  }
-  document.getElementById('ma').innerHTML=mh;
-
-  // sentiment
-  if(g.sentiment){
-    var sd=g.sentiment;
-    document.getElementById('ms').innerHTML=
-    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:8px">'+
-    '<div class="kp"><div class="l">帖子</div><div class="v">'+(sd.total_posts||0)+'</div></div>'+
-    '<div class="kp"><div class="l">好评</div><div class="v" style="color:var(--green)">'+(sd.positive_pct||0)+'%</div></div>'+
-    '<div class="kp"><div class="l">差评</div><div class="v" style="color:var(--red)">'+(sd.negative_pct||0)+'%</div></div></div>'+
-    '<div class="sb2"><div class="p" style="width:'+(sd.positive_pct||0)+'%"></div><div class="n" style="width:'+(sd.negative_pct||0)+'%"></div><div class="u" style="width:'+(sd.neutral_pct||100)+'%"></div></div>';
-  }else{
-    document.getElementById('ms').innerHTML='<p style="color:var(--t2);font-size:12px">暂无舆论数据</p>';
-  }
-
-  document.getElementById('mo').classList.add('sh');
-  document.body.style.overflow='hidden';
-}
-
-function closeModal(){
-  document.getElementById('mo').classList.remove('sh');
-  document.body.style.overflow='';
-}
-</script>
-</body></html>
