@@ -65,7 +65,7 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 <a onclick="showTab('nws',this)"><span>📰</span> 新闻</a>
 </nav>
 <div class="mn">
-<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-02 12:07</div></div>
+<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-02 12:16</div></div>
 
 <div id="tab-rank" class="tc on">
 <div class="kps">
@@ -89,14 +89,14 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 </div>
 
 <div id="tab-sent" class="tc">
-<div class="wb i">🔍 <b>游戏舆情分析</b> — Google Play 搜索 → 4 种来源舆情分析</div>
-<div id="as">
-<div style="display:flex;gap:8px;margin-bottom:16px">
-<input id="gsi" placeholder="游戏名搜索 (例: 오딘, 리니지M)" style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--t1);font-size:14px">
-<button onclick="searchGame()" style="padding:8px 16px;border-radius:6px;border:none;background:var(--blue);color:#fff;cursor:pointer;font-size:14px">搜索</button>
+<div id="gs-wrap" style="max-width:500px;margin:80px auto 40px;text-align:center">
+<div style="margin-bottom:16px"><span style="font-size:20px">🔍</span> <b style="font-size:18px">游戏搜索</b></div>
+<div style="display:flex;gap:8px">
+<input id="gsi" placeholder="搜索游戏名 (例如: 奥丁, LineageM)" style="flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--t1);font-size:14px;outline:none" onkeydown="if(event.key==='Enter')searchGame()">
+<button onclick="searchGame()" style="padding:10px 20px;border-radius:8px;border:none;background:var(--blue);color:#fff;cursor:pointer;font-size:14px;white-space:nowrap">搜索</button>
+</div>
 </div>
 <div id="gc"></div>
-</div>
 </div>
 
 <div id="tab-rev" class="tc">
@@ -254,12 +254,41 @@ function renderInf(q){
   });
 }
 
-// ── Sentiment (Game Analysis) ──
-var ANJ=JSON.parse(decodeURIComponent('%7B%7D'));
-function searchGame(){var q=document.getElementById('gsi').value.trim();if(!q)return;if(ANJ&&ANJ.selected&&ANJ.selected.name){renderAnalysis(ANJ);return}document.getElementById('gc').innerHTML='<p style="color:var(--t2);padding:20px;text-align:center">暂无 analysis_result.json<br><span style="font-size:12px">请运行: <code>python3 analyze_game.py "'+q+'"</code></span></p>';}
-function renderAnalysis(d){var el=document.getElementById('gc');if(!d||!d.selected){el.innerHTML='<p style="color:var(--t2);padding:20px;text-align:center">无搜索结果。</p>';return}var sel=d.selected;var src=d.sources||{};var h='';h+='<div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--bg2);border-radius:10px;margin-bottom:20px">';if(sel.icon)h+='<img src="'+sel.icon+'" style="width:48px;height:48px;border-radius:10px">';h+='<div><div style="font-size:18px;font-weight:700">'+sel.name+'</div><div style="font-size:12px;color:var(--t2)">'+(sel.dev||'')+' · '+(sel.genre||'')+' · ⭐ '+(sel.score||0)+'</div></div></div>';h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">';// DC Insideh+='<div style="background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px">';h+='<div style="font-size:14px;font-weight:700;margin-bottom:8px">🏛 DCinside</div>';var dc=src.dcinside||{};h+=sentCard(dc,'帖子','total_posts',dc.top_posts,dc.negative_posts);h+='</div>';// Arca.liveh+='<div style="background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px">';h+='<div style="font-size:14px;font-weight:700;margin-bottom:8px">📱 Arca.live</div>';var ac=src.arcahive||{};h+=sentCard(ac,'帖子','total_posts',ac.top_posts,[]);h+='</div>';// YouTubeh+='<div style="background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px">';h+='<div style="font-size:14px;font-weight:700;margin-bottom:8px">📺 YouTube</div>';var yt=src.youtube||{};h+=sentCard(yt,'评论','total_comments',yt.top_positive,yt.top_negative);if(yt.videos&&yt.videos.length){h+='<div style="margin-top:8px">';yt.videos.slice(0,3).forEach(function(v){h+='<div style="padding:6px 8px;background:var(--bg2);border-radius:6px;margin-bottom:4px;font-size:11px"><a href="'+v.url+'" target="_blank" style="color:var(--link);text-decoration:none">'+v.title.substring(0,50)+'</a><br><span style="color:var(--t2)">'+v.channel+' · 播放 '+((v.views||0).toLocaleString())+'</span></div>';});h+='</div>';}h+='</div>';// Google Playh+='<div style="background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px">';h+='<div style="font-size:14px;font-weight:700;margin-bottom:8px">🛒 Google Play</div>';var gp=src.googleplay||{};h+=sentCard(gp,'评论','total_reviews',[],[]);h+='<div style="margin-top:8px;font-size:12px;color:var(--t2)">平均: '+(gp.average_score||0)+'分';if(gp.score_dist){var sd=gp.score_dist;for(var i=5;i>=1;i--){var cnt=sd[i]||0;var w=cnt?(cnt/(gp.total_reviews||1)*100):0;var sc=i>=4?'var(--green)':i===3?'var(--yellow)':'var(--red)';h+='<div style="display:flex;align-items:center;gap:6px;margin:2px 0"><span style="width:12px;text-align:right;color:'+sc+'">'+i+'</span><div style="flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px"><div style="width:'+w+'%;height:100%;border-radius:3px;background:'+sc+'"></div></div><span style="font-size:10px;color:var(--t2);width:20px">'+cnt+'</span></div>';}}h+='</div>';if(gp.reviews&&gp.reviews.length){h+='<div style="margin-top:8px">';gp.reviews.slice(0,5).forEach(function(r){var sc=r.score>=4?'var(--green)':r.score>=3?'var(--yellow)':'var(--red)';var short=(r.text||'').substring(0,80);h+='<div style="padding:6px 8px;background:var(--bg2);border-radius:6px;margin-bottom:4px;font-size:11px"><span style="color:'+sc+';font-weight:700">⭐'+r.score+'</span> <span style="color:var(--t2);font-size:10px">'+(r.date||'')+'</span><br>'+short+'</div>';});h+='</div>';}h+='</div>';h+='</div>';el.innerHTML=h;}
-function sentCard(data,label,countKey,positiveItems,negativeItems){var h='';h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px">';h+='<div class="kp" style="padding:8px"><div class="l">正面</div><div class="v" style="font-size:14px;color:var(--green)">'+(data.positive_pct||0)+'%</div></div>';h+='<div class="kp" style="padding:8px"><div class="l">负面</div><div class="v" style="font-size:14px;color:var(--red)">'+(data.negative_pct||0)+'%</div></div>';h+='<div class="kp" style="padding:8px"><div class="l">中立</div><div class="v" style="font-size:14px;color:var(--t2)">'+(data.neutral_pct||0)+'%</div></div></div>';h+='<div class="sb2"><div class="p" style="width:'+(data.positive_pct||0)+'%"></div><div class="n" style="width:'+(data.negative_pct||0)+'%"></div><div class="u" style="width:'+(data.neutral_pct||100)+'%"></div></div>';h+='<div style="font-size:11px;color:var(--t2);margin-top:4px">共 '+(data[countKey]||0)+'条 '+label+'</div>';if(positiveItems&&positiveItems.length){h+='<div style="margin-top:6px">';positiveItems.slice(0,3).forEach(function(p){if(p.url){h+='<div style="padding:4px 6px;background:rgba(34,197,94,.1);border-radius:4px;margin-bottom:3px;font-size:11px"><a href="'+p.url+'" target="_blank" style="color:var(--link);text-decoration:none">'+(p.title||p.text||'').substring(0,60)+'</a>'+(p.recommend?' <span style="color:var(--t2)">['+p.recommend+'推]</span>':'')+'</div>';}else{h+='<div style="padding:4px 6px;background:rgba(34,197,94,.1);border-radius:4px;margin-bottom:3px;font-size:11px;color:var(--green)">👍 '+(p.text||p.title||'').substring(0,60)+'</div>';}});h+='</div>';}if(negativeItems&&negativeItems.length){h+='<div style="margin-top:4px">';negativeItems.slice(0,3).forEach(function(p){if(p.url){h+='<div style="padding:4px 6px;background:rgba(239,68,68,.1);border-radius:4px;margin-bottom:3px;font-size:11px"><a href="'+p.url+'" target="_blank" style="color:var(--link);text-decoration:none">'+(p.title||p.text||'').substring(0,60)+'</a>'+(p.recommend?' <span style="color:var(--t2)">['+p.recommend+'推]</span>':'')+'</div>';}else{h+='<div style="padding:4px 6px;background:rgba(239,68,68,.1);border-radius:4px;margin-bottom:3px;font-size:11px;color:var(--red)">👎 '+(p.text||p.title||'').substring(0,60)+'</div>';}});h+='</div>';}return h;}
-function renderSent(){if(ANJ&&ANJ.selected){renderAnalysis(ANJ);}}
+// ── Game Search ──
+function searchGame(){
+  var q=document.getElementById('gsi').value.trim().toLowerCase();
+  var wrap=document.getElementById('gs-wrap');
+  var gc=document.getElementById('gc');
+  if(!q){wrap.style.margin='80px auto 40px';gc.innerHTML='';return;}
+  wrap.style.margin='0 auto 20px';
+  var results=G.filter(function(g){
+    return (g.name||'').toLowerCase().indexOf(q)>=0
+      || (g.developer||'').toLowerCase().indexOf(q)>=0
+      || (g.publisher||'').toLowerCase().indexOf(q)>=0;
+  });
+  if(!results.length){
+    gc.innerHTML='<p style="color:var(--t2);text-align:center;padding:40px">无搜索结果</p>';
+    return;
+  }
+  var h='';
+  results.forEach(function(g){
+    var pkg=g.package||'';
+    var link=pkg?'https://play.google.com/store/apps/details?id='+pkg:'#';
+    var rc=g.rating>=4.5?'rh':g.rating>=4.0?'rm':g.rating>=3.5?'ro':'rb';
+    h+='<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;cursor:pointer"'+(pkg?' onclick="window.open(\''+link+'\',\'_blank\')"':'')+'>';
+    if(g.icon)h+='<img src="'+g.icon+'" style="width:48px;height:48px;border-radius:10px;flex-shrink:0">';
+    h+='<div style="flex:1;min-width:0">';
+    h+='<div style="font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+g.name+'</div>';
+    h+='<div style="font-size:12px;color:var(--t2);margin-top:2px">'+g.developer+' · '+g.publisher+'</div>';
+    h+='<div style="font-size:12px;color:var(--t2);margin-top:2px">'+g.category+(pkg?'<span style="margin-left:8px;color:var(--link);font-size:11px">▶ Google Play</span>':'')+'</div>';
+    h+='</div>';
+    h+='<div style="text-align:right;flex-shrink:0"><div class="'+rc+'" style="font-size:16px;font-weight:700">⭐ '+g.rating.toFixed(2)+'</div>';
+    h+='<div style="font-size:11px;color:var(--t2);margin-top:2px">#'+g.rank+'</div></div>';
+    h+='</div>';
+  });
+  gc.innerHTML=h;
+}
+function renderSent(){}
 
 // ── Revenue Chart ──
 var rvc=null;
