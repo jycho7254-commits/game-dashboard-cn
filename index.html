@@ -106,6 +106,62 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 .cal-event-item .ev-source{font-size:10px;color:var(--t2);flex-shrink:0}
 .cal-event-item .ev-game.gl{cursor:pointer}
 .cal-event-item .ev-game.gl:hover{text-decoration:underline}
+/* ===== 모바일 반응형 ===== */
+@media(max-width:768px){
+  body{flex-direction:column}
+  .sb{width:100%;height:auto;position:sticky;top:0;z-index:50;display:flex;overflow-x:auto;overflow-y:hidden;padding:0;flex-shrink:0;border-right:none;border-bottom:1px solid var(--border)}
+  .sb h2{display:none}
+  .sb a{padding:10px 14px;font-size:13px;white-space:nowrap;border-left:none;border-bottom:3px solid transparent}
+  .sb a.on{border-left:none;border-bottom-color:var(--blue)}
+  .mn{padding:12px;max-width:100%;overflow-x:hidden}
+  .tb{flex-wrap:wrap;gap:8px}
+  .tb h1{font-size:16px}
+  .kps{grid-template-columns:repeat(2,1fr);gap:8px}
+  .kp{padding:12px}
+  .kp .v{font-size:18px}
+  .kp .l{font-size:10px}
+  table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  th,td{padding:6px 8px;white-space:nowrap}
+  .si{width:100%}
+  .ft{gap:4px}
+  .ch{padding:5px 10px;font-size:11px}
+  .ig{grid-template-columns:1fr}
+  .cc{height:280px}
+  .md{width:95%;padding:16px;max-height:90vh}
+  .md h2{font-size:15px}
+  .vi{font-size:12px;gap:8px;padding:8px}
+  .vi .vs{font-size:10px}
+  .cal-grid{gap:1px}
+  .cal-day{min-height:40px;padding:2px}
+  .cal-day .day-num{font-size:10px}
+  .cal-event-dot{width:5px;height:5px}
+  .cal-day .cal-tip{display:none!important}
+  .cal-event-item{flex-wrap:wrap;gap:6px;padding:8px}
+  .cal-event-item .ev-date{min-width:auto;font-size:11px}
+  .cal-event-item .ev-game{font-size:12px;white-space:normal}
+  .cal-event-item .ev-title{font-size:11px;white-space:normal}
+  .cal-filters{gap:4px}
+  .cal-filter-btn{padding:4px 8px;font-size:10px}
+  .cal-nav .cal-month-label{font-size:13px;min-width:100px}
+  .cal-nav button{padding:4px 10px;font-size:11px}
+  .hist-row{font-size:10px}
+  .hist-row .hl{width:14px}
+  .hist-row .hv{width:24px}
+  .sc-row{grid-template-columns:1fr 1fr;gap:4px}
+  .sc-post{font-size:11px}
+  .review-item{font-size:11px}
+}
+@media(max-width:480px){
+  .kps{grid-template-columns:1fr 1fr}
+  .kp .v{font-size:16px}
+  .sb a{padding:8px 10px;font-size:12px}
+  .mn{padding:8px}
+  .tb h1{font-size:14px}
+  .cc{height:220px}
+  .cal-day{min-height:32px}
+  .cal-day .day-num{font-size:9px}
+  .cal-header{font-size:9px;padding:4px 2px}
+}
 </style>
 </head><body>
 <nav class="sb">
@@ -122,7 +178,7 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 <a onclick="showTab('nws',this)"><span>📰</span> 新闻</a>
 </nav>
 <div class="mn">
-<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 20:42</div></div>
+<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 22:35</div></div>
 
 <div id="tab-rank" class="tc on">
 <div class="kps">
