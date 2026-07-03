@@ -178,7 +178,7 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 <a onclick="showTab('nws',this)"><span>📰</span> 新闻</a>
 </nav>
 <div class="mn">
-<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 23:08</div></div>
+<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 23:21</div></div>
 
 <div id="tab-rank" class="tc on">
 <div class="kps">
@@ -303,6 +303,22 @@ var CAT_CN={
   '인디/공포게임 리뷰':'独立/恐怖游戏评测','종합 게임 실황':'综合游戏实况'
 };
 function catCn(c){return CAT_CN[c]||c;}
+// 개발사/퍼블리셔 중국어 매핑
+var DEV_PUB_CN={
+  '넷마블':'网石','카카오게임즈':'Kakao Games','센추리게임즈':'Century Games','엔씨소프트':'NCsoft',
+  '넥슨':'Nexon','넥슨 데브캣':'Nexon DevCat','드림게임즈':'Dream Games','퍼스트펀':'FirstFun',
+  '마이크로펀':'Microfun','로블록스 코퍼레이션':'Roblox Corporation','쿠로게임즈':'库洛游戏',
+  '시프트업':'Shift Up','레벨 인피니트':'Level Infinite','일일퍼센트':'111%',
+  '프로젝트문':'Project Moon','에피드게임즈':'Epid Games','오므니로조':'Omnilojo',
+  '삼십칠게임즈':'37GAMES','플레이릭스':'Playrix','라이노스':'Rhinos','NHN':'NHN',
+  '하오플레이':'HaoPlay','컴투스':'Com2uS','포노스':'PONOS','미하요':'米哈游',
+  '미하요(호요버스)':'米哈游(HoYoverse)','EA':'EA','하이브로우':'highbrow',
+  '웹젠':'Webzen','킹스그룹':'KingsGroup','펀플러스':'FunPlus','레니우':'Leniu',
+  'N2E':'N2E','슈퍼매직':'Supermagic','킹':'King','슈퍼셀':'Supercell',
+  '리버게임':'RiverGame','조이투게더':'JoyTogether','슈퍼플레이':'SuperPlay',
+  '인스투게임즈':'INSTUN Games','사이게임스':'Cygames'
+};
+function dpCn(n){return DEV_PUB_CN[n]||n;}
 // G 배열에 cn_name 추가
 G.forEach(function(g){g.cn_name=cn(g.name)});
 
@@ -357,7 +373,7 @@ function renderRank(q){
     var c=g.rank_change||'→';
     var cc=c.indexOf('↑')===0?'ru':c.indexOf('↓')===0?'rd':'';
     var tr=document.createElement('tr');
-    tr.innerHTML='<td>'+(i+1)+'</td><td class="'+cc+'">'+c+'</td><td><span class="gl" onclick="openModal('+i+')">'+g.cn_name+'</span></td><td class="dp">'+g.developer+'</td><td class="dp">'+g.publisher+'</td><td>'+catCn(g.category)+'</td><td class="'+rClass(g.rating)+'">'+g.rating.toFixed(2)+'</td>';
+    tr.innerHTML='<td>'+(i+1)+'</td><td class="'+cc+'">'+c+'</td><td><span class="gl" onclick="openModal('+i+')">'+g.cn_name+'</span></td><td class="dp">'+dpCn(g.developer)+'</td><td class="dp">'+dpCn(g.publisher)+'</td><td>'+catCn(g.category)+'</td><td class="'+rClass(g.rating)+'">'+g.rating.toFixed(2)+'</td>';
     tb.appendChild(tr);
   });
 }
@@ -440,7 +456,7 @@ function searchGame(){
     if(g.icon)h+='<img src="'+g.icon+'" style="width:48px;height:48px;border-radius:10px;flex-shrink:0">';
     h+='<div style="flex:1;min-width:0">';
     h+='<div style="font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+g.cn_name+'</div>';
-    h+='<div style="font-size:12px;color:var(--t2);margin-top:2px">'+escH(g.developer)+' · '+escH(g.publisher)+'</div>';
+    h+='<div style="font-size:12px;color:var(--t2);margin-top:2px">'+escH(dpCn(g.developer))+' · '+escH(dpCn(g.publisher))+'</div>';
     h+='<div style="font-size:12px;color:var(--t2);margin-top:2px">'+escH(catCn(g.category))+(pkg?'<span style="margin-left:8px;color:var(--link);font-size:11px">▶ Google Play</span>':'')+'</div>';
     h+='</div>';
     h+='<div style="text-align:right;flex-shrink:0"><div class="'+rc+'" style="font-size:16px;font-weight:700">⭐ '+g.rating.toFixed(2)+'</div>';
@@ -882,8 +898,8 @@ function openModal(idx){
   document.getElementById('mt').textContent=g.cn_name+' 详细信息';
   var wi=g.website?'<a href="'+g.website+'" target="_blank" style="color:var(--blue)">'+g.website+'</a>':'—';
   document.getElementById('mi').innerHTML=
-  '<div class="ii"><div class="l">开发商</div><div class="vl">'+g.developer+'</div></div>'+
-  '<div class="ii"><div class="l">发行商</div><div class="vl">'+g.publisher+'</div></div>'+
+  '<div class="ii"><div class="l">开发商</div><div class="vl">'+dpCn(g.developer)+'</div></div>'+
+  '<div class="ii"><div class="l">发行商</div><div class="vl">'+dpCn(g.publisher)+'</div></div>'+
   '<div class="ii"><div class="l">上线日期</div><div class="vl">'+g.released+'</div></div>'+
   '<div class="ii"><div class="l">最近更新</div><div class="vl">'+g.updated+'</div></div>'+
   '<div class="ii"><div class="l">版本</div><div class="vl">'+g.version+'</div></div>'+
