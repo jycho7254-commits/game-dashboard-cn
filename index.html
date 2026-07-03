@@ -178,7 +178,7 @@ td{padding:10px 12px;border-bottom:1px solid var(--border)}tr:hover td{backgroun
 <a onclick="showTab('nws',this)"><span>📰</span> 新闻</a>
 </nav>
 <div class="mn">
-<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 23:26</div></div>
+<div class="tb"><h1>韩国手机游戏数据看板</h1><div class="mt">2026-07-03 23:38</div></div>
 
 <div id="tab-rank" class="tc on">
 <div class="kps">
@@ -463,33 +463,33 @@ function searchGame(){
     h+='<div style="font-size:11px;color:var(--t2);margin-top:2px">#'+g.rank+'</div></div>';
     h+='</div>';
     // 전체 여론 개괄 요약 (중국어)
-    var dcData = SJ_DATA[g.name]; // DC
-    var arcaData = ARJ_DATA[g.name]; // 아카
-    var ytData = YTJ_DATA[g.name]; // 유튜브
-    var gpData = GPJ_DATA[g.name]; // Google Play
-    var totalPosts = 0;
-    var totalPos = 0, totalNeg = 0, srcCnt = 0;
-    if(dcData && dcData.total_posts){ totalPosts += dcData.total_posts; totalPos += dcData.positive_pct; totalNeg += dcData.negative_pct; srcCnt++; }
-    if(arcaData && arcaData.total_posts){ totalPosts += arcaData.total_posts; totalPos += arcaData.positive_pct; totalNeg += arcaData.negative_pct; srcCnt++; }
-    if(ytData && ytData.total_comments){ totalPosts += ytData.total_comments; totalPos += ytData.positive_pct; totalNeg += ytData.negative_pct; srcCnt++; }
-    if(gpData && gpData.total_reviews_sampled){ totalPosts += gpData.total_reviews_sampled; totalPos += gpData.positive_pct; totalNeg += gpData.negative_pct; srcCnt++; }
-    var avgPos = srcCnt ? Math.round(totalPos / srcCnt) : 0;
-    var avgNeg = srcCnt ? Math.round(totalNeg / srcCnt) : 0;
-    var avgNeu = 100 - avgPos - avgNeg;
-    var posLevel = avgPos > 40 ? '积极' : avgPos > 20 ? '中性偏积极' : avgNeg > 40 ? '消极' : '中性';
-    var summaryText = '整体舆情：' + posLevel;
-    if(totalPosts > 0){
-      summaryText += '（基于' + totalPosts.toLocaleString() + '条讨论）';
-    }
-    h+='<div style="background:var(--bg2);border-radius:8px;padding:14px;margin:12px 0;border-left:3px solid var(--blue)">';
-    h+='<div style="font-size:14px;font-weight:700;margin-bottom:6px">📋 舆情概览</div>';
-    h+='<div style="font-size:13px;color:var(--t2);line-height:1.6">' + summaryText + '</div>';
-    if(srcCnt > 0){
-      h+='<div style="margin-top:8px;display:flex;gap:12px;font-size:12px">';
-      h+='<span style="color:var(--green)">正面 ' + avgPos + '%</span>';
-      h+='<span style="color:var(--red)">负面 ' + avgNeg + '%</span>';
-      h+='<span style="color:var(--t2)">中性 ' + avgNeu + '%</span>';
+    var dcData = SJ_DATA[g.name];
+    var arcaData = ARJ_DATA[g.name];
+    var ytData = YTJ_DATA[g.name];
+    var gpData = GPJ_DATA[g.name];
+    h+='<div style="padding:14px 16px;background:rgba(59,130,246,.06);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">';
+    var cnSources=[];
+    if(dcData&&dcData.total_posts) cnSources.push({n:'DC',pos:dcData.positive_pct,neg:dcData.negative_pct,neu:dcData.neutral_pct,t:dcData.total_posts});
+    if(arcaData&&arcaData.total_posts) cnSources.push({n:'Arca',pos:arcaData.positive_pct,neg:arcaData.negative_pct,neu:arcaData.neutral_pct,t:arcaData.total_posts});
+    if(ytData&&ytData.total_comments) cnSources.push({n:'YT',pos:ytData.positive_pct,neg:ytData.negative_pct,neu:ytData.neutral_pct,t:ytData.total_comments});
+    if(gpData&&gpData.total_reviews_sampled) cnSources.push({n:'GP',pos:gpData.positive_pct,neg:gpData.negative_pct,neu:gpData.neutral_pct,t:gpData.total_reviews_sampled});
+    if(cnSources.length>0){
+      var avgPos=Math.round(cnSources.reduce(function(s,x){return s+x.pos},0)/cnSources.length);
+      var avgNeg=Math.round(cnSources.reduce(function(s,x){return s+x.neg},0)/cnSources.length);
+      var avgNeu=100-avgPos-avgNeg;
+      var totalPosts=cnSources.reduce(function(s,x){return s+x.t},0);
+      var mood = avgPos>=40?'🟢 积极': avgNeg>=35?'🔴 消极': avgPos>=25?'🟡 偏积极':'⚪ 中性';
+      h+='<div style="font-size:14px;font-weight:700;margin-bottom:8px">📋 今日舆情概览</div>';
+      h+='<div style="font-size:12px;color:var(--t2);line-height:1.8">';
+      h+='<div>• 4个来源(DC/Arca/YT/GP) 共'+totalPosts.toLocaleString()+'条分析</div>';
+      h+='<div>• 正面 '+avgPos+'% / 负面 '+avgNeg+'% / 中性 '+avgNeu+'%</div>';
+      var srcLines=cnSources.map(function(s){return '  '+s.n+':正'+s.pos+'% 负'+s.neg+'% ('+s.t+'条)'});
+      h+='<div style="font-size:11px;color:var(--t2);margin-top:2px">'+srcLines.join(' / ')+'</div>';
+      h+='<div>• 整体氛围: '+mood+'</div>';
       h+='</div>';
+      h+='<div class="sc-bar" style="margin-top:8px"><div class="bp" style="width:'+avgPos+'%"></div><div class="bn" style="width:'+avgNeg+'%"></div><div class="bu" style="width:'+avgNeu+'%"></div></div>';
+    } else {
+      h+='<div style="font-size:12px;color:var(--t2)">📋 舆情数据收集中</div>';
     }
     h+='</div>';
     var sd=SJ_DATA[g.name];
